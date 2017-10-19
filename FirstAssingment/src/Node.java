@@ -1,6 +1,4 @@
-// Recursive Java program to print lca of two nodes
-  
-// A binary tree node
+
 class Node 
 {
     int data;
