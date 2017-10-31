@@ -11,8 +11,13 @@ public class Digraph<V> {
     
       
     public Map<V,List<V>> neighbors = new HashMap<V,List<V>>();
+    private boolean hascycle;
     
-  
+    public String toString () {
+        StringBuffer s = new StringBuffer();
+        for (V v: neighbors.keySet()) s.append("\n    " + v + " -> " + neighbors.get(v));
+        return s.toString(); 
+    }
     
     /**
      * Add a vertex to the graph.  Nothing happens if vertex is already in graph.
@@ -45,6 +50,11 @@ public class Digraph<V> {
         if (!(this.contains(from) && this.contains(to)))
             throw new IllegalArgumentException("Nonexistent vertex");
         neighbors.get(from).remove(to);
+    }
+    public int lca()
+    {
+    	// Want to select two vertices called a and b and go back along the edges of each untill they reach a vertex
+    	// with either no indegrees, or where one of the child vertices isnt an ancestor 
     }
     
    
@@ -91,7 +101,10 @@ public class Digraph<V> {
     }
    
     public boolean isDag () {
-        return topSort() != null;
+        if(topSort() != null)
+        	hascycle=true;
+        else hascycle= false;
+        return hascycle;
     }
     
     	public static void main (String[] args) {
@@ -99,7 +112,7 @@ public class Digraph<V> {
         Digraph<Integer> graph = new Digraph<Integer>();
         graph.addEdge(1, 2); graph.addEdge(1, 3); graph.addEdge(2, 3);
         graph.addEdge(2, 4); graph.addEdge(4, 5); graph.addEdge(5, 6);    // Tetrahedron with tail
-        System.out.println("The current graph: " + graph);
+        System.out.println("The current graph: " + graph + "\n" + " top sort " + graph.topSort());
         
     }
   
