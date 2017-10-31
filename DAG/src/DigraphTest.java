@@ -41,7 +41,13 @@ public class DigraphTest {
 	@Test 
 	public void testIsDag()
 	{
-		
+		Digraph<Integer> graph = new Digraph<Integer>();
+        graph.add(0, 1); graph.add(0, 2); graph.add(0, 3);
+        graph.add(1, 2); graph.add(1, 3); graph.add(2, 3);
+        graph.add(2, 4); graph.add(4, 5); graph.add(5, 6);
+        boolean dag =true;
+        boolean ans=isDag();
+        assertEquals("testing to make sure method is returns that it is a dag",dag,ans);
 	}
 
 }
