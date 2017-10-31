@@ -10,21 +10,14 @@ import java.util.Stack;
 public class Digraph<V> {
     
       
-    private Map<V,List<V>> neighbors = new HashMap<V,List<V>>();
+    public Map<V,List<V>> neighbors = new HashMap<V,List<V>>();
     
-    /**
-     * String representation of graph.
-     */
-    public String toString () {
-        StringBuffer s = new StringBuffer();
-        for (V v: neighbors.keySet()) s.append("\n    " + v + " -> " + neighbors.get(v));
-        return s.toString();                
-    }
+  
     
     /**
      * Add a vertex to the graph.  Nothing happens if vertex is already in graph.
      */
-    public void add (V vertex) {
+    public void addVertex (V vertex) {
         if (neighbors.containsKey(vertex)) return;
         neighbors.put(vertex, new ArrayList<V>());
     }
@@ -37,11 +30,10 @@ public class Digraph<V> {
     }
     
     /**
-     * Add an edge to the graph; if either vertex does not exist, it's added.
-     * This implementation allows the creation of multi-edges and self-loops.
+     * Add an edge to the graph; for example [1, 2] connects vertex 1 to vertex 2
      */
-    public void add (V from, V to) {
-        this.add(from); this.add(to);
+    public void addEdge (V from, V to) {
+        this.addVertex(from); this.addVertex(to);
         neighbors.get(from).add(to);
     }
     
@@ -102,7 +94,14 @@ public class Digraph<V> {
         return topSort() != null;
     }
     
-    
+    	public static void main (String[] args) {
+        // Create a Graph with Integer nodes
+        Digraph<Integer> graph = new Digraph<Integer>();
+        graph.addEdge(1, 2); graph.addEdge(1, 3); graph.addEdge(2, 3);
+        graph.addEdge(2, 4); graph.addEdge(4, 5); graph.addEdge(5, 6);    // Tetrahedron with tail
+        System.out.println("The current graph: " + graph);
+        
+    }
   
  
 }

@@ -11,18 +11,23 @@ public class DigraphTest {
 	public void test() {
 		fail("Not yet implemented");
 	}
+
 	@Test
-	public void testAdd(){
-		
+	public void testAdd() {
+		Digraph<Integer> graph = new Digraph<Integer>();
+		graph.addEdge(1, 1);
+		graph.addEdge(1, 2);
+		assertEquals("checking if graph is entered correctly", graph);
+	
+
 	}
 	@Test
 	public void testContains()
 	{
-		
-	}
-	@Test
-	 public void testAddAlt(){
-		
+		Digraph<Integer> graph = new Digraph<Integer>();
+		graph.addVertex(1);
+		graph.addVertex(2);
+		boolean istrue = contains();
 	}
 	@Test
 	public void testRemove(){
