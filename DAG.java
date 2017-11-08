@@ -76,5 +76,35 @@ public class DAG<Value> {
 		System.arraycopy(firstArray,0,arrayCopy,0 , firstArray.length);
 		return arrayCopy;
 	}
+	
+	public void deleteNode(Node n){
+		int i;
+		for (i=0; i<n.child.length;i++)
+		{
+			n.child[i] = null;
+		}
+		
+		for(i=0; i<nodelist.length;i++)
+		{
+			if(Arrays.asList(nodelist[i].child).contains(n)== true)
+			{
+				for(int j = 0; j<nodelist[i].child.length;j++)
+				{
+					if(nodelist[i].child[j]==n)
+					{
+						nodelist[i].child = null;
+					}
+				}
+			}
+		}
+		
+		for (int k=0; k<nodelist.length;k++)
+		{
+			if(nodelist[k]==n)
+			{
+				nodelist[k] = null;
+			}
+		}
+	}
 
 }
